@@ -1,3 +1,4 @@
+<% if users.exists? %>
 <table class='table'>
   <thead>
     <tr>
@@ -11,8 +12,20 @@
       <tr>
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
         <td><%= user.name %></td>
+        <td>フォロー数: <%= user.followings.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+        <td>
+          <% if current_user.following?(user) %>
+            <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', user %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p>ユーザーが見つかりません</p>
+<% end %>
