@@ -30,8 +30,22 @@ def following?(user)
   followings.include?(user)
 end
 
+def get_profile_image
+  'no_image.jpg'
+end
 
-  def get_profile_image
-    'no_image.jpg'
+def self.looks(search, word)
+  if search == "perfect_match"
+    @user = User.where("name LIKE?", "#{word}")
+  elsif search == "forward_match"
+    @user = User.where("name LIKE?", "#{word}%")
+  elsif search == "backward_match"
+    @user = User.where("name LIKE?", "%#{word}")
+  elsif search == "partical_match"
+    @user = User.where("name LIKE?", "%#{word}%")
+  else
+    @user = User.all
   end
+end
+
 end
