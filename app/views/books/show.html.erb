@@ -20,13 +20,16 @@
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render 'favorites/favorite', book: @book %>
           </td>
+          <td class="comment">
+            <%= render 'books/count', book: @book %>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
-        <div id="comment_area">
+        <div class="comment_area">
           <%= render partial: 'books/comment',locals: { book: @book, book_comment: @book_comment} %>
         </div>
       </div>

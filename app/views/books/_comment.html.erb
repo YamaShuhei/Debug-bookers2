@@ -1,5 +1,4 @@
             <div>
-              <p>comment count:<%= book.book_comments.count %></p>
               <% book.book_comments.each do |book_comment| %>
                 <%= image_tag book_comment.user.get_profile_image, size:"50x50" %>
                 <%= book_comment.comment %>
