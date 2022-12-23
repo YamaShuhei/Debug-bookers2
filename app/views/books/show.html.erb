@@ -17,8 +17,8 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <td>
-            <%= render 'favorite', book: @book %>
+          <td id="favorite_buttons_<%= @book.id %>">
+            <%= render 'favorites/favorite', book: @book %>
           </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
@@ -26,9 +26,10 @@
           <% end %>
         </tr>
       </table>
-
-<%= render 'comment', book: @book %>
+        <div id="comment_area">
+          <%= render partial: 'books/comment',locals: { book: @book, book_comment: @book_comment} %>
         </div>
+      </div>
     </div>
   </div>
 </div>
